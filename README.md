@@ -12,7 +12,7 @@ https://movie-holic.netlify.app/<br/>
 <img src="./readme-images/tv.png"/><br/>
 <img src="./readme-images/search.png"/><br/>
 <img src="./readme-images/details.png"/><br/>
-
+<img src="./readme-images/modalYT.png"/><br/>
 
 
 
