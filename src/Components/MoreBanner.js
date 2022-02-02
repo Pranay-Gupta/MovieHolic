@@ -112,7 +112,24 @@ function Banner({ id, type, content }) {
                 {g.name}
               </Typography>
             ))}
+            {/* <Typography variant="body1" color="white" sx={{ mr: 4 }}>
+               {content.media_type}
+            </Typography> */}
+         
+
           </Box>
+          {
+              type === 'movie' ?(
+                <Typography variant="body1" color="white">
+                  Movie
+                </Typography>
+              ) :(
+                <Typography variant="body1" color="white">
+                  Tv Series
+                </Typography>
+              )
+
+            }
           <Typography variant="h6" color="white" sx={{my:3}} gutterBottom>
             <em>{content.tagline}</em>
           </Typography>

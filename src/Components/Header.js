@@ -9,7 +9,7 @@ import { Movie } from "@mui/icons-material";
 import TvIcon from "@mui/icons-material/Tv";
 import SearchIcon from "@mui/icons-material/Search";
 function Header() {
-  const navigate = useNavigate();
+ 
   const styles = {
     link: {
       margin: "1rem",
@@ -35,15 +35,18 @@ function Header() {
         color: '#2196f3',
       },
     },
+    activeIcon:{
+      color: '#2196f3',
+    },
   };
 
   return (
     <div>
       <AppBar
         position="fixed"
-        color="transparent"
+        color='transparent'
         elevation={0}
-        sx={{ height: "10vh" }}
+        sx={{ height: "7vh", }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h4" color="white">
@@ -62,7 +65,7 @@ function Header() {
               <TvIcon sx={styles.iconStyle} />
             </Link>
 
-            <Link to="/search" style={styles.link}>
+            <Link to="/search" style={styles.link }>
               <SearchIcon sx={styles.iconStyle} />
             </Link>
           </Box>

@@ -1,69 +1,70 @@
 import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import Banner from "../Components/Banner";
-import { getGenres, getLatestMovies, getMovies, getTopRated } from "../Api";
+import { getGenres, getMovies } from "../Api";
 import useGenreId from "../hooks/useGenreId";
-import MoreTopRatedMovie from "./MoreTopRatedMovie";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress, Container, Grid } from "@mui/material";
 import SinglePage from "../Components/Details/SinglePage";
+import Genre from "../Components/Genre";
 
 function Movie() {
-  const styles = {
-    movie: {
-      bgcolor: "#010c16",
-      width: "100%",
-      height: "100%",
-      position: "relative",
-      top: "0",
-      left: "0",
-    },
-  };
 
   const [genres, setGenres] = useState([]);
-  const [movies, setMovies] = useState([]);
-
+  const [selectedGenres, setSelectedGenres] = useState([]);
   const [page, setPage] = useState(1);
   const [content, setContent] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [totalPages, setTotalPages] = useState();
-
-  useEffect(() => {
-    getTopRated('movie',page).then((data) => {
-      setContent([...content, data?.results]);
-      setTotalPages(data?.total_pages);
-    });
-  }, [page]);
-  const nextData = () => {
-
-      if (page > totalPages) {
-        setHasMore(false);
-        return;
-      }
-      setPage(page + 1);
-
-  };
-  const genreId = useGenreId(genres);
-  useEffect(() => {
-    getMovies(12).then((data) => {
-      setMovies(data);
-      console.log({ movies });
-    });
-  }, []);
   useEffect(() => {
     getGenres("movie").then((data) => {
       setGenres(data);
     });
   }, []);
+  const genreId = useGenreId(selectedGenres);
+  useEffect(() => {
+    getMovies(genreId, page).then((data) => {
+      setContent([...content, data?.results]);
+      setTotalPages(data?.total_pages);
+
+      console.log({ genreId });
+    });
+  }, [genreId, page]);
+  const nextData = () => {
+    if (page > totalPages) {
+      setHasMore(false);
+      return;
+    }
+    setPage(page + 1);
+  };
 
   return (
     <>
-
-      <Box sx={styles.movie}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: "10vh",
+        }}
+      >
+        <Typography variant="body1" color="white" sx={{ mr: 2 }}>
+          Filter By:
+        </Typography>
+        <Genre
+          selectedGenres={selectedGenres}
+          setSelectedGenres={setSelectedGenres}
+          genres={genres}
+          setGenres={setGenres}
+          type="movie"
+          setPage={setPage}
+          setContent={setContent}
+        />
+      </Box>
       <InfiniteScroll
         dataLength={content.length} //This is important field to render the next data
         next={nextData}
+        style={{overflow:'hidden'}}
         hasMore={hasMore}
         loader={
           <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -74,19 +75,19 @@ function Movie() {
         <Typography
           variant="h4"
           color="white"
-          sx={{ mt: "10vh", mb: "25px", textAlign: "center" }}
+          sx={{ mt: "5vh", mb: "25px", textAlign: "center" }}
         >
           Movie
         </Typography>
         <Container maxWidth="xl">
           <Grid container spacing={2}>
             {content?.map((video) => (
-              <SinglePage content={video} key={video.id} type='movie'/>
+              <SinglePage content={video} key={video.id} type="movie" />
             ))}
           </Grid>
         </Container>
       </InfiniteScroll>
-      </Box>
+      )
     </>
   );
 }

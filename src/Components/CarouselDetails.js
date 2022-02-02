@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, Container, Paper, Typography } from "@mui/material";
+import React from "react";
+import { Button, Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import AliceCarousel from "react-alice-carousel";
 import CardDetails from "./CardDetails";
@@ -65,7 +65,6 @@ function CarouselDetails({ title, content, type, idFromDetails }) {
           disableDotsControls
           keyboardNavigation={true}
           disableButtonsControls
-
         />
       </Container>
     </>

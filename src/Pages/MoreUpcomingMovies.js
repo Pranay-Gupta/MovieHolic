@@ -2,7 +2,7 @@ import { CircularProgress, Typography, Grid, Container } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getTopRated, getTrending, getUpComing } from "../Api";
+import { getUpComing } from "../Api";
 import SinglePage from "../Components/Details/SinglePage";
 import { useParams } from "react-router-dom";
 function MoreUpcomingMovies() {
@@ -37,6 +37,7 @@ function MoreUpcomingMovies() {
       <InfiniteScroll
         dataLength={content.length} //This is important field to render the next data
         next={nextData}
+        style={{overflow:'hidden'}}
         hasMore={hasMore}
         loader={
           <Box sx={{ display: "flex", justifyContent: "center" }}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "./Components/Header";
 import Home from "./Pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,23 +13,34 @@ import MoreTopRatedSeries from "./Pages/MoreTopRatedSeries";
 import MoreUpcomingMovies from "./Pages/MoreUpcomingMovies";
 import MoreRecommended from "./Pages/MoreRecommended";
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
   return (
     <>
       <CssBaseline />
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home isLoading={isLoading} setIsLoading={setIsLoading}/>} exact />
+          <Route path="/" element={<Home />} exact />
           <Route path="/movie" element={<Movie />} />
-          <Route path="/details/:type/:id" element={<Details/>} />
-          <Route path="/tv" element={<Tv/>} />
+          <Route path="/details/:type/:id" element={<Details />} />
+          <Route path="/tv" element={<Tv />} />
           <Route path="/search" element={<Search />} />
-          <Route path='/:title/mTrending' element={<MoreTrending/>}/>
-          <Route path='/:title/mTopRatedMovie' element={<MoreTopRatedMovie/>}/>
-          <Route path='/:title/mTopRatedSeries' element={<MoreTopRatedSeries/>}/>
-          <Route path='/:title/mUpcomingMovie' element={<MoreUpcomingMovies/>}/>
-          <Route path='/:title/:idFromDetails/:type/mRecommended' element={<MoreRecommended/>}/>
+          <Route path="/:title/mTrending" element={<MoreTrending />} />
+          <Route
+            path="/:title/mTopRatedMovie"
+            element={<MoreTopRatedMovie />}
+          />
+          <Route
+            path="/:title/mTopRatedSeries"
+            element={<MoreTopRatedSeries />}
+          />
+          <Route
+            path="/:title/mUpcomingMovie"
+            element={<MoreUpcomingMovies />}
+          />
+          <Route
+            path="/:title/:idFromDetails/:type/mRecommended"
+            element={<MoreRecommended />}
+          />
         </Routes>
       </BrowserRouter>
     </>

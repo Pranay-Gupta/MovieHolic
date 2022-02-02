@@ -2,10 +2,9 @@ import { CircularProgress, Typography, Grid, Container } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getTopRated, getTrending } from "../Api";
+import { getTrending } from "../Api";
 import SinglePage from "../Components/Details/SinglePage";
 import { useParams } from "react-router-dom";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 function MoreTrending() {
   const styles = {
     more: {
@@ -25,13 +24,12 @@ function MoreTrending() {
     });
   }, [page]);
   const nextData = () => {
-    setTimeout(() => {
       if (page > totalPages) {
         setHasMore(false);
         return;
       }
       setPage(page + 1);
-    }, 2000);
+  
   };
 
   return (
@@ -39,6 +37,7 @@ function MoreTrending() {
       <InfiniteScroll
         dataLength={content.length} //This is important field to render the next data
         next={nextData}
+        style={{overflow:'hidden'}}
         hasMore={hasMore}
         loader={
           <Box sx={{ display: "flex", justifyContent: "center" }}>

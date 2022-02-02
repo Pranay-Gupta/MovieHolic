@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Typography from "@mui/material/Typography";
+import React from "react";
 import { Box } from "@mui/system";
 import Banner from "../Components/Banner";
-import { getTopRated, getTrending, getUpComing } from "../Api";
-import CarouselDetails from "../Components/CarouselDetails";
 import Trending from "../Components/Home/Trending";
 import TopSeries from "../Components/Home/TopSeries";
 import TopMovies from "../Components/Home/TopMovies";
 import UpComing from "../Components/Home/UpComing";
 
-function Home({ isLoading, setIsLoading }) {
-
+function Home() {
   const styles = {
     home: {
       bgcolor: "#010c16",
@@ -24,7 +20,7 @@ function Home({ isLoading, setIsLoading }) {
 
   return (
     <>
-      <Banner  />
+      <Banner />
       <Box sx={styles.home}>
         <Trending />
         <TopMovies />

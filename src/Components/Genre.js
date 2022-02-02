@@ -1,20 +1,22 @@
-import { Chip } from "@material-ui/core";
-import axios from "axios";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { Box, Chip } from "@mui/material";
+
 import { getGenres } from "../Api";
 
-const Genre = ({
+function Genre({
   selectedGenres,
   setSelectedGenres,
   genres,
   setGenres,
   type,
   setPage,
-}) => {
+  setContent
+}) {
   const handleAdd = (genre) => {
     setSelectedGenres([...selectedGenres, genre]);
     setGenres(genres.filter((g) => g.id !== genre.id));
     setPage(1);
+    setContent([]);
   };
 
   const handleRemove = (genre) => {
@@ -23,31 +25,24 @@ const Genre = ({
     );
     setGenres([...genres, genre]);
     setPage(1);
+    setContent([]);
   };
 
-
   useEffect(() => {
-    
     getGenres(type).then((data) => {
       setGenres(data);
-    })
+    });
 
-    // return () => {
-      // setGenres({}); // unmounting
-    // };
-    // eslint-disable-next-line
   }, []);
 
   return (
-    <div style={{ padding: "6px 0" }}>
+    <Box >
       {selectedGenres.map((genre) => (
         <Chip
           style={{ margin: 2 }}
           label={genre.name}
           key={genre.id}
           color="primary"
-          clickable
-          size="small"
           onDelete={() => handleRemove(genre)}
         />
       ))}
@@ -56,13 +51,13 @@ const Genre = ({
           style={{ margin: 2 }}
           label={genre.name}
           key={genre.id}
-          clickable
-          size="small"
+          color="primary"
+          variant="outlined"
           onClick={() => handleAdd(genre)}
         />
       ))}
-    </div>
+    </Box>
   );
-};
+}
 
 export default Genre;

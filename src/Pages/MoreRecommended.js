@@ -38,6 +38,7 @@ function MoreRecommended() {
       <InfiniteScroll
         dataLength={content.length} //This is important field to render the next data
         next={nextData}
+        style={{overflow:'hidden'}}
         hasMore={hasMore}
         loader={
           <Box sx={{ display: "flex", justifyContent: "center" }}>

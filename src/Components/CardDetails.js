@@ -1,12 +1,4 @@
-import {
-  Badge,
-  Card,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Card, CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +10,7 @@ function CardDetails({ id, type }) {
     getDetails(id, type).then((data) => {
       setContent(data);
     });
-  }, []);
+  }, [id,type]);
 
   const navigate = useNavigate();
   const loadDetails = () => {
@@ -38,13 +30,13 @@ function CardDetails({ id, type }) {
         sx={{ maxWidth: 320, m: 1, bgcolor: "black", position: "relative" }}
       >
         <CardMedia component="img" image={imageUrl} height="150" />
-      <Typography
-        variant="subtitle2"
-        color="white"
-        sx={{ textAlign: "center" ,m:1}}
-      >
-        {content.title || content.name}
-      </Typography>
+        <Typography
+          variant="subtitle2"
+          color="white"
+          sx={{ textAlign: "center", m: 1 }}
+        >
+          {content.title || content.name}
+        </Typography>
       </Card>
     </Box>
   );

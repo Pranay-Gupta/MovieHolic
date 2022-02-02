@@ -24,10 +24,11 @@ function Cast({ id, type }) {
           component="img"
           image={
             c.profile_path
-              ? `https://image.tmdb.org/t/p/original/${c.profile_path}`
+              ? `https://image.tmdb.org/t/p/w500/${c.profile_path}`
               : "https://img.search.brave.com/082a2gQ9GyoNF_74CRa4dMhA9d__F7ND4UAXE9b5HXE/rs:fit:510:550:1/g:ce/aHR0cHM6Ly93d3cu/c3RibGF6ZXlteC5j/by51ay93cC1jb250/ZW50L3VwbG9hZHMv/MjAxNy8wMS9Oby1J/bWFnZS1BdmFpbGFi/bGUuanBn"
           }
           height="220"
+          sx={{objectFit:'fill'}}
         />
         <Typography
           variant="subtitle2"
@@ -42,13 +43,13 @@ function Cast({ id, type }) {
 
   const responsive = {
     0: {
-      items: 3,
+      items: 4,
     },
     512: {
-      items: 5,
+      items: 6,
     },
     1024: {
-      items: 7,
+      items: 8,
     },
   };
 
