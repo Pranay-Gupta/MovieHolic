@@ -1,6 +1,6 @@
 import axios from "axios";
 const URL = 'https://api.themoviedb.org/3';
-const KEY = process.env.REACT_APP_TMDB_API_KEY
+const KEY = process.env.REACT_APP_TMDB_KEY
 export const getTrending = async (page) => {
     try {
         const {data} = await axios.get(`${URL}/trending/all/week?api_key=${KEY}&page=${page}`)
